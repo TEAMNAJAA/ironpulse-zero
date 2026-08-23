@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ironpulse-zero
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: IRONPULSE_OPEN_BROWSER
+        value: "false"
+      - key: IRONPULSE_MAX_UPLOAD_MB
+        value: "500"
+      - key: IRONPULSE_DATA_DIR
+        value: /app/ironpulse/data
+      - key: IRONPULSE_DEMO_DIR
+        value: /app/ironpulse/data/demo
+      - key: IRONPULSE_UPLOAD_DIR
+        value: /app/ironpulse/data/uploads
+      - key: IRONPULSE_DB_FILE
+        value: /app/ironpulse/data/ironpulse.db

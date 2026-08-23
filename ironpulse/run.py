@@ -16,7 +16,8 @@ os.environ.setdefault("IRONPULSE_PROJECT_ROOT", HERE)
 
 
 def main():
-    cfg = yaml.safe_load(io.open(os.path.join(HERE, "config.yaml"), encoding="utf-8"))
+    from web import service as sv
+    cfg = sv.load_cfg()
     host = cfg["web"]["host"]
     port = int(cfg["web"]["port"])
     url = "http://%s:%d/" % (host, port)

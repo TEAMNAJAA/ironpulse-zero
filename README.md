@@ -31,19 +31,30 @@
 
 ## รันเว็บแอป
 
+**วิธีที่ง่ายที่สุดบน Windows** ดับเบิลคลิก `เปิดเว็บแอป.bat` ที่โฟลเดอร์หลัก
+สคริปต์จะติดตั้งไลบรารีให้ถ้ายังไม่ครบ นำเข้า baseline ที่เตรียมไว้ แล้วเปิดเบราว์เซอร์ให้เอง
+macOS หรือ Linux ใช้ `./open-webapp.sh`
+
+**นำขึ้นเน็ตด้วย Render** ดู [DEPLOY_RENDER.md](DEPLOY_RENDER.md) — มี `Dockerfile` และ `render.yaml` เตรียมไว้แล้ว
+
+**หรือรันเองทีละขั้น**
+
 ```bash
 git clone https://github.com/TEAMNAJAA/ironpulse-zero.git
 cd ironpulse-zero/ironpulse
-pip install fastapi uvicorn python-multipart numpy scipy scikit-learn opencv-python pyyaml imageio-ffmpeg matplotlib
-python web/seed_demo.py
+pip install -r requirements.txt
+python web/baseline_seed.py import
 python run.py
 ```
 
 เปิดเบราว์เซอร์ให้อัตโนมัติที่ `http://127.0.0.1:8765/`
 **ไม่ต้องต่ออินเทอร์เน็ตขณะใช้งาน** ไม่มี CDN ไม่มี build step ไม่มี npm ไม่มี Docker
 
-`web/seed_demo.py` ต้องมีชุดข้อมูลวิดีโออยู่ในเครื่อง (ดูหัวข้อถัดไป)
-ถ้ายังไม่มี ให้ข้ามไปสร้างเครื่องและ baseline เองที่หน้าสอบเทียบในเว็บแอป
+`web/baseline_seed.py import` นำเข้า baseline ที่ฝึกไว้แล้วจากคลิปปกติ 38 คลิป (ไฟล์ 26 KB ใน repo)
+จึงใช้งานได้ทันทีโดยไม่ต้องมีไฟล์วิดีโอ **คะแนนที่ได้ตรงกับตอนฝึกทุกหลัก**
+
+⚠️ คลิปวิดีโอไม่ได้อยู่ใน repo เพราะไฟล์ละราว 100 MB ปุ่มลัดคลิปสาธิตจึงไม่ขึ้น
+ให้ลากไฟล์วิดีโอของคุณมาวางในหน้าเว็บ หรือวางไฟล์ไว้ใน `ironpulse/data/demo/` แล้วรีเฟรช
 
 ---
 

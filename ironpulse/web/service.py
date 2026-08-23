@@ -31,8 +31,42 @@ class ServiceError(Exception):
     pass
 
 
+ENV_OVERRIDES = [
+    ("PORT", ("web", "port"), int),
+    ("HOST", ("web", "host"), str),
+    ("IRONPULSE_OPEN_BROWSER", ("web", "open_browser"), lambda v: v.strip().lower()
+     in ("1", "true", "yes", "on")),
+    ("IRONPULSE_MAX_UPLOAD_MB", ("web", "max_upload_mb"), float),
+    ("IRONPULSE_DATA_DIR", ("web", "data_dir"), str),
+    ("IRONPULSE_DEMO_DIR", ("web", "demo_dir"), str),
+    ("IRONPULSE_UPLOAD_DIR", ("web", "upload_dir"), str),
+    ("IRONPULSE_DB_FILE", ("web", "db_file"), str),
+]
+
+
+def apply_env(cfg):
+    applied = []
+    for key, path, cast in ENV_OVERRIDES:
+        raw = os.environ.get(key)
+        if raw is None or raw == "":
+            continue
+        node = cfg
+        for part in path[:-1]:
+            node = node[part]
+        try:
+            node[path[-1]] = cast(raw)
+        except (TypeError, ValueError):
+            raise ServiceError(
+                "ค่าของตัวแปรสภาพแวดล้อม %s = %r ใช้ไม่ได้ กับคีย์ %s"
+                % (key, raw, ".".join(path)))
+        applied.append("%s -> %s" % (key, ".".join(path)))
+    return applied
+
+
 def load_cfg():
-    return yaml.safe_load(io.open(CONFIG_PATH, encoding="utf-8"))
+    cfg = yaml.safe_load(io.open(CONFIG_PATH, encoding="utf-8"))
+    apply_env(cfg)
+    return cfg
 
 
 def abspath(cfg, key):
