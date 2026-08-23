@@ -1,0 +1,13 @@
+quantity,value,unit
+ruler_angle,-4.5235,deg
+edge_fit_rms,0.5101,px
+tick_pitch_column,25.6119,px
+tick_pitch_axis,25.6919,px_per_cm
+px_per_mm,2.56919,px/mm
+um_per_px,389.228,um/px
+half_left,26.4173,px_per_cm
+half_right,24.7521,px_per_cm
+perspective_spread,6.481,pct
+detection_floor,19.461,um
+width,1080,px
+height,1920,px

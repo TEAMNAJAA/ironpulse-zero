@@ -1,0 +1,24 @@
+{
+  "h4_wall_2026_08_22": {
+    "created_at": "2026-08-23T03:20:12",
+    "half_left_px_per_cm": 26.417286325675903,
+    "half_right_px_per_cm": 24.75209949064184,
+    "height": 1920,
+    "n_pairs": 1,
+    "notes": "steel ruler, 11 cm span read from 11 autocorrelation lags",
+    "perspective_spread_frac": 0.0648136969624634,
+    "pitch_px_per_cm_along_axis": 25.69189713091736,
+    "px_per_mm": 2.569189713091737,
+    "px_per_mm_max": 2.569189713091737,
+    "px_per_mm_min": 2.569189713091737,
+    "ruler_angle_deg": -4.523453798619796,
+    "setup_id": "h4_wall_2026_08_22",
+    "source": "IMG_8379.MOV",
+    "spread_frac": 0.0,
+    "um_per_px": 389.22777672054826,
+    "values": [
+      2.569189713091737
+    ],
+    "width": 1080
+  }
+}

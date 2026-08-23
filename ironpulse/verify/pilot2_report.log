@@ -1,0 +1,136 @@
+========================================================================================================
+0. run sanity
+========================================================================================================
+clip        group      frames     used   tracked    lost     df_Hz   a1/noise
+normal_01   normal       2223     2000      2000   False      0.12      69.14
+normal_02   normal       2231     2000      2000   False      0.12     70.891
+normal_03   normal       2232     2000      2000   False      0.12      87.42
+unbal_01    unbal        2302     2000      2000   False      0.12    632.602
+unbal_02    unbal        2220     2000      2000   False      0.12    649.009
+unbal_03    unbal        2269     2000      2000   False      0.12    807.996
+
+  tracking dropout : none
+  df across clips  : ['0.12']
+  primary axis     : normal_01=x, normal_02=x, normal_03=x, unbal_01=y, unbal_02=y, unbal_03=y
+  blade_count      : 3 (measured, blade pass 57.0 Hz / f0 18.96 Hz = 3.006)
+  markers in setup : 2 (machine on motor housing, reference on wall)
+  d_base absent    : feature vector is 26 values, not 39
+
+========================================================================================================
+1. r1 per clip, group means, between-group ratio
+========================================================================================================
+clip        group          r1_x       r1_y       A1x_px       A1y_px     prom_x     prom_y
+normal_01   normal       0.6950     0.1414      0.05661      0.01055       1.90       1.03
+normal_02   normal       0.7430     0.1879      0.06717      0.00949       2.23       1.03
+normal_03   normal       0.6943     0.2260      0.08535      0.01538       1.06       1.87
+unbal_01    unbal        1.0949     1.0917      1.01644      2.42505      10.06      24.18
+unbal_02    unbal        1.0919     1.1042      1.07323      2.48588       8.54      22.58
+unbal_03    unbal        1.0386     1.0713      0.97150      2.45055       8.93      18.62
+
+  axis x : normal 0.7108 (sd 0.0279, n=3) | unbal 1.0751 (sd 0.0317, n=3) | ratio 1.513 x
+  axis y : normal 0.1851 (sd 0.0424, n=3) | unbal 1.0891 (sd 0.0166, n=3) | ratio 5.882 x
+
+  axis x : 1x amplitude normal 0.06971 px | unbal 1.02039 px | ratio 14.6 x
+  axis y : 1x amplitude normal 0.01181 px | unbal 2.45383 px | ratio 207.8 x
+
+  r1 = A1 / sqrt(sum(A^2)/2), so a pure 1x sinusoid gives r1 = sqrt(2) = 1.4142
+  axis x : ceiling on any achievable r1 ratio = 1.4142 / 0.7108 = 1.990 x
+  axis y : ceiling on any achievable r1 ratio = 1.4142 / 0.1851 = 7.639 x
+  the retired SPEC 6.9 rule fired at r1_ratio >= 2.0
+    axis x observed 1.513 x -> would NOT fire
+    axis y observed 5.882 x -> would fire
+  replaced by rules.z_threshold, see verify/rules_check.py
+
+========================================================================================================
+2. within-group spread of the normal group, against the previous pilot
+========================================================================================================
+quantity             mean         sd     cv_pct      n
+r1_x               0.7108     0.0279        3.9      3
+r1_y               0.1851     0.0424       22.9      3
+A1_x_px           0.06971    0.01454       20.9      3
+A1_y_px           0.01181    0.00314       26.6      3
+
+  unbal group r1_x cv = 2.9 %
+  unbal group r1_y cv = 1.5 %
+
+  previous pilot (8 clips, old setup, r1_x) cv = 16.8 %
+  this pilot     (3 clips, new setup, r1_x) cv = 3.9 %
+  change = -12.9 percentage points, 0.23 x the old spread
+  n = 3, so this sd carries 2 degrees of freedom, read it as an observation
+
+========================================================================================================
+3. peak to peak and correlation, machine marker against reference marker, raw px
+========================================================================================================
+clip        group      mach_x   mach_y    ref_x    ref_y p2p_ratio rms_ratio    corr_x    corr_y
+normal_01   normal     0.5906   0.1277   0.4931   0.5336      0.83      1.96    0.0859   -0.0011
+normal_02   normal     1.1064   0.1651   0.9119   0.4376      1.11      1.82    0.3513   -0.1379
+normal_03   normal     0.7241   0.1695   0.3789   0.3102      1.52      2.76    0.1699   -0.0915
+unbal_01    unbal      5.4146  14.7075   1.4182   0.7202      9.85     16.69    0.0024    0.0146
+unbal_02    unbal     10.1829  15.4512   0.7947   0.3367     21.44     32.61    0.0249    0.0028
+unbal_03    unbal      4.4222  13.6004   0.8318   0.2572     16.43     41.72    0.0460   -0.0389
+
+  normal mean p2p ratio   1.15 x  (min 0.83, max 1.52)
+  unbal  mean p2p ratio  15.91 x  (min 9.85, max 21.44)
+  correlation machine vs reference over all clips and both axes: -0.138 to 0.351
+  clips where the reference marker moves MORE than the machine marker: normal_01
+  markers.reference_check now runs at 2 points and fires on the clips above
+
+========================================================================================================
+4. Cohen d, all 26 features, sorted by absolute value, unbal minus normal
+========================================================================================================
+feature                       cohen_d    normal_mean     unbal_mean
+d_machine_y.E_1x               68.049        0.10767        0.99126
+d_machine_y.r1                 28.075        0.18514        1.08905
+d_machine_y.E_sub             -23.422        0.61692        0.00087
+d_machine_y.r3                -13.654        0.26447        0.04144
+d_machine_x.r1                 12.214        0.71075        1.07513
+d_machine_y.r05               -10.899        0.13825        0.00399
+d_machine_y.E_mid              -8.856        0.21301        0.00558
+d_machine_x.r05                -7.919        0.06775        0.01701
+d_machine_x.E_1x                7.535        0.45336        0.96450
+d_machine_x.E_sub              -6.281        0.48915        0.01324
+d_machine_x.r2                  5.660        0.04520        0.11769
+d_machine_y.E_hi               -4.984        0.06239        0.00229
+d_machine_x.E_hi               -4.233        0.01619        0.00289
+d_machine_y.harm               -3.921        1.79654        0.08384
+d_machine_x.centroid            3.670        0.72309        1.02117
+d_machine_x.E_mid              -3.026        0.04128        0.01937
+d_machine_x.crest              -2.473        3.04144        2.56675
+d_machine_x.kurt               -1.882        2.61762        2.20493
+d_machine_x.r3                 -1.870        0.05841        0.03930
+d_machine_y.kurt                1.127        2.03375        2.26232
+d_machine_y.crest              -0.970        2.58410        2.21598
+d_machine_y.centroid           -0.889        1.11441        1.01518
+d_machine_y.r2                 -0.084        0.05070        0.04983
+d_machine_x.harm                0.042        0.14509        0.14608
+d_machine_y.rbp                 0.000        0.00000        0.00000
+d_machine_x.rbp                 0.000        0.00000        0.00000
+
+  best finite separator: d_machine_y.E_1x (d = 68.049)
+  abs d >= 0.8 : 22 of 26 features
+  n = 3 per group, d is descriptive here, no inference attached
+  rbp gated off: True (blade_count = 3)
+  reason: the blade pass order lands exactly on shaft harmonic 3, which is
+          feature r3 already, so rbp duplicated r3 value for value and could
+          not separate blade damage from misalignment
+  rbp reads 0.0 in both groups and means NOT MEASURED, not no change
+
+========================================================================================================
+5. shaft speed per clip, tolerance 5 %
+========================================================================================================
+clip        group           f0_Hz        rpm     f0_free_Hz   free_axis               source
+normal_01   normal        18.9600     1137.6        18.9600           x      spectral_peak_x
+normal_02   normal        19.0800     1144.8        19.0800           x      spectral_peak_x
+normal_03   normal        19.0800     1144.8         3.7200           y      spectral_peak_x
+unbal_01    unbal         18.9600     1137.6        18.9600           y      spectral_peak_x
+unbal_02    unbal         18.9600     1137.6        18.9600           y      spectral_peak_y
+unbal_03    unbal         18.9600     1137.6        18.9600           y      spectral_peak_y
+
+  min 18.9600 Hz  max 19.0800 Hz  mean 19.0000 Hz  sd 0.0620 Hz  spread 0.63 %
+  fft bin width df = 0.1200 Hz, so min and max sit 1.0 bin apart
+  largest deviation from the mean: normal_02 at 0.42 %
+  OK: spread is inside 5 %, no f0 alert
+  clips where the unconstrained peak is not the shaft peak: normal_03
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\verify\pilot2_spectra.png
+
+wrote C:\Users\more_\Downloads\Arise\ironpulse\verify\pilot2_cohens_d.csv

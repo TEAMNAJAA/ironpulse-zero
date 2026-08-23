@@ -1,0 +1,22 @@
+clip           ax    spec_corr  max_rel_diff  ref_rank  tie_gap_%
+IMG_8351       y     0.9724103      2.22e-01         3      7.280
+IMG_8351       x     0.9974906      3.38e-02         1      0.000
+IMG_8352       y     0.9774126      2.17e-01         1      0.000
+IMG_8352       x     0.9935993      5.85e-02         1      0.000
+IMG_8353       y     0.9803816      3.42e-01         1      0.000
+IMG_8353       x     0.9984069      3.01e-02         1      0.000
+IMG_8354       y     0.9820104      1.71e-01         1      0.000
+IMG_8354       x     0.9976101      5.39e-02         1      0.000
+IMG_8356       y     0.9886284      1.27e-01         3     11.205
+IMG_8356       x     0.9988377      1.89e-02         1      0.000
+IMG_8357       y     0.9839246      2.17e-01         4      8.738
+IMG_8357       x     0.9961808      4.37e-02         1      0.000
+IMG_8358       y     0.9863507      1.14e-01         1      0.000
+IMG_8358       x     0.9963892      5.94e-02         1      0.000
+IMG_8359       y     0.9910207      1.11e-01         1      0.000
+IMG_8359       x     0.9979875      2.84e-02         1      0.000
+
+y axis: min spectrum correlation 0.9724103, worst max_rel_diff 3.43e-01
+x axis: min spectrum correlation 0.9935993, worst max_rel_diff 5.94e-02
+worst tie gap on disagreeing y clips: 11.205 %
+wrote C:\Users\more_\Downloads\Arise\ironpulse\verify\spectrum_agreement.csv

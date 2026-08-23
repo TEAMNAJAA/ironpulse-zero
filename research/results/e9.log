@@ -1,0 +1,54 @@
+=== mafaulda 1951 files
+  signals 0/1951
+  signals 600/1951
+  signals 1200/1951
+  signals 1800/1951
+mafaulda: 1951 signals in 142s
+  detrend    constant                   AUC=0.7152 +/- 0.0588  F1=0.1070  FAR=0.0224
+  detrend    linear                     AUC=0.7147 +/- 0.0593  F1=0.1061  FAR=0.0212
+  detrend    poly2                      AUC=0.7157 +/- 0.0587  F1=0.1024  FAR=0.0200
+  detrend    poly3                      AUC=0.7155 +/- 0.0606  F1=0.1038  FAR=0.0241
+  window_fn  hann                       AUC=0.7147 +/- 0.0593  F1=0.1061  FAR=0.0212
+  window_fn  hamming                    AUC=0.7131 +/- 0.0627  F1=0.1125  FAR=0.0237
+  window_fn  none                       AUC=0.7300 +/- 0.0545  F1=0.0741  FAR=0.0162
+  order_tolerance 0.02                       AUC=0.6811 +/- 0.0700  F1=0.0786  FAR=0.0284
+  order_tolerance 0.05                       AUC=0.7133 +/- 0.0636  F1=0.1009  FAR=0.0238
+  order_tolerance 0.08                       AUC=0.7147 +/- 0.0593  F1=0.1061  FAR=0.0212
+  order_tolerance 0.1                        AUC=0.7077 +/- 0.0690  F1=0.1054  FAR=0.0205
+  order_tolerance 0.15                       AUC=0.7098 +/- 0.0540  F1=0.1148  FAR=0.0241
+  order_tolerance 0.2                        AUC=0.7011 +/- 0.0690  F1=0.1179  FAR=0.0216
+  bands      research_bands             AUC=0.7147 +/- 0.0593  F1=0.1061  FAR=0.0212
+  bands      appspec_bands              AUC=0.6966 +/- 0.0688  F1=0.0990  FAR=0.0188
+  rms_order_min 0.1                        AUC=0.7147 +/- 0.0593  F1=0.1061  FAR=0.0212
+  rms_order_min 0.2                        AUC=0.5824 +/- 0.1064  F1=0.0801  FAR=0.0374
+  threshold  pct=90     AUC=0.7147  F1=0.6084  FAR=0.1106
+  threshold  pct=95     AUC=0.7147  F1=0.4182  FAR=0.0675
+  threshold  pct=97.5   AUC=0.7147  F1=0.1556  FAR=0.0374
+  threshold  pct=99     AUC=0.7147  F1=0.1061  FAR=0.0212
+  threshold  pct=99.5   AUC=0.7147  F1=0.0922  FAR=0.0176
+=== cwru_48k 56 files
+  signals 0/56
+cwru_48k: 56 signals in 16s
+  detrend    constant                   AUC=0.6917 +/- 0.2165  F1=0.5020  FAR=0.1149
+  detrend    linear                     AUC=0.6922 +/- 0.2168  F1=0.5002  FAR=0.1149
+  detrend    poly2                      AUC=0.6935 +/- 0.2159  F1=0.5103  FAR=0.1149
+  detrend    poly3                      AUC=0.6936 +/- 0.2160  F1=0.5141  FAR=0.1149
+  window_fn  hann                       AUC=0.6922 +/- 0.2168  F1=0.5002  FAR=0.1149
+  window_fn  hamming                    AUC=0.6654 +/- 0.1676  F1=0.2734  FAR=0.0338
+  window_fn  none                       AUC=0.6075 +/- 0.0610  F1=0.0859  FAR=0.0135
+  order_tolerance 0.02                       AUC=0.7804 +/- 0.0387  F1=0.5501  FAR=0.0485
+  order_tolerance 0.05                       AUC=0.6902 +/- 0.1986  F1=0.4666  FAR=0.1216
+  order_tolerance 0.08                       AUC=0.6922 +/- 0.2168  F1=0.5002  FAR=0.1149
+  order_tolerance 0.1                        AUC=0.6808 +/- 0.2030  F1=0.4795  FAR=0.1296
+  order_tolerance 0.15                       AUC=0.6862 +/- 0.1751  F1=0.4836  FAR=0.1351
+  order_tolerance 0.2                        AUC=0.7271 +/- 0.0611  F1=0.4134  FAR=0.0203
+  bands      research_bands             AUC=0.6922 +/- 0.2168  F1=0.5002  FAR=0.1149
+  bands      appspec_bands              AUC=0.6637 +/- 0.1928  F1=0.4713  FAR=0.1216
+  rms_order_min 0.1                        AUC=0.6922 +/- 0.2168  F1=0.5002  FAR=0.1149
+  rms_order_min 0.2                        AUC=0.6861 +/- 0.1512  F1=0.4047  FAR=0.0847
+  threshold  pct=90     AUC=0.6922  F1=0.6244  FAR=0.2377
+  threshold  pct=95     AUC=0.6922  F1=0.5808  FAR=0.2039
+  threshold  pct=97.5   AUC=0.6922  F1=0.5444  FAR=0.1351
+  threshold  pct=99     AUC=0.6922  F1=0.5002  FAR=0.1149
+  threshold  pct=99.5   AUC=0.6922  F1=0.4694  FAR=0.1149
+wrote C:\Users\more_\Downloads\Arise\research\results/tables\e9_dsp_params.csv 44 rows

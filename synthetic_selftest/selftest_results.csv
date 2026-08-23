@@ -1,0 +1,19 @@
+check,measured,expected,unit,abs_error,tolerance,result,note
+double integration recovers reference,49.999988,50.0,um,1.189e-05,0.05,PASS,"acceleration -> displacement, spec 6.2.1"
+literal 0.5 Hz high-pass leaves a sub-Hz artifact,521.361,50.0,um,471.361,n/a,EXPECTED FAILURE,artifact peak at 0.50 Hz; this is why Q1 raises the cutoff
+boxcar shutter 1/240 s vs sinc theory,48.724772,48.724768,um,3.72e-06,0.02,PASS,50 * sinc(f0 * T_exposure)
+boxcar shutter 1/500 s vs sinc theory,49.704442,49.704437,um,4.29e-06,0.02,PASS,50 * sinc(f0 * T_exposure)
+boxcar shutter 1/1000 s vs sinc theory,49.926015,49.926011,um,4.41e-06,0.02,PASS,50 * sinc(f0 * T_exposure)
+naive decimation preserves amplitude,49.999972,50.0,um,2.772e-05,0.02,PASS,no attenuation expected below Nyquist
+ideal decimation preserves amplitude,50.195281,50.0,um,0.19528106,0.3,PASS,no attenuation expected below Nyquist
+naive sampling folds 300 Hz to its alias,60.0,60.0,Hz,0.0,1.0,PASS,300 Hz at 240 fps aliases to 60 Hz
+quantisation noise rms equals q/sqrt(12),0.014442,0.014434,px,8.09e-06,0.0005,PASS,"uniform quantiser, spec 6.2.3"
+white noise injected at 20 dB SNR,20.0,20.0,dB,0.0,0.15,PASS,
+white noise injected at 10 dB SNR,10.0,10.0,dB,0.0,0.15,PASS,
+white noise injected at 0 dB SNR,-0.0,0.0,dB,0.0,0.15,PASS,
+50 um converts to pixels,0.145,0.145,px,0.0,0.0005,PASS,29 px/cm at 30 cm on 720p
+one pixel in micrometres,344.827586,344.83,um,0.00241379,0.05,PASS,
+detector mahalanobis separates synthetic data,1.0,1.0,auc,0.0,0.02,PASS,"shifted Gaussian, code check only"
+detector isolation_forest separates synthetic data,1.0,1.0,auc,0.0,0.02,PASS,"shifted Gaussian, code check only"
+detector ocsvm separates synthetic data,1.0,1.0,auc,0.0,0.02,PASS,"shifted Gaussian, code check only"
+detector pca_recon separates synthetic data,1.0,1.0,auc,0.0,0.02,PASS,"shifted Gaussian, code check only"

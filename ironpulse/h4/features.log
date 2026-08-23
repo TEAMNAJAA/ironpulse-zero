@@ -1,0 +1,71 @@
+IMG_8436   3g       f0= 18.120  full+3 windows
+IMG_8437   3g       f0= 18.120  full+3 windows
+IMG_8438   3g       f0= 18.120  full+3 windows
+IMG_8439   3g       f0= 18.120  full+3 windows
+IMG_8440   3g       f0= 18.000  full+3 windows
+IMG_8441   3g       f0= 18.120  full+3 windows
+IMG_8442   3g       f0= 18.120  full+3 windows
+IMG_8443   3g       f0= 18.120  full+3 windows
+IMG_8390   normal   f0= 18.960  full+3 windows
+IMG_8391   normal   f0= 18.840  full+3 windows
+IMG_8392   normal   f0= 18.840  full+3 windows
+IMG_8393   normal   f0= 18.960  full+3 windows
+IMG_8394   normal   f0= 19.080  full+3 windows
+IMG_8395   normal   f0= 19.080  full+3 windows
+IMG_8396   normal   f0= 18.960  full+3 windows
+IMG_8397   normal   f0= 18.960  full+3 windows
+IMG_8398   normal   f0= 18.960  full+3 windows
+IMG_8399   normal   f0= 18.960  full+3 windows
+IMG_8400   normal   f0= 18.960  full+3 windows
+IMG_8401   normal   f0= 18.960  full+3 windows
+IMG_8402   normal   f0= 19.080  full+3 windows
+IMG_8403   normal   f0= 18.960  full+3 windows
+IMG_8404   normal   f0= 19.080  full+3 windows
+IMG_8405   normal   f0= 19.080  full+3 windows
+IMG_8406   normal   f0= 19.080  full+3 windows
+IMG_8407   normal   f0= 19.080  full+3 windows
+IMG_8408   normal   f0= 19.080  full+3 windows
+IMG_8409   normal   f0= 18.960  full+3 windows
+IMG_8410   normal   f0= 19.080  full+3 windows
+IMG_8411   normal   f0= 18.960  full+3 windows
+IMG_8412   normal   f0= 19.080  full+3 windows
+IMG_8413   normal   f0= 19.080  full+3 windows
+IMG_8414   normal   f0= 19.080  full+3 windows
+IMG_8415   normal   f0= 19.080  full+3 windows
+IMG_8418   normal   f0= 19.080  full+3 windows
+IMG_8419   normal   f0= 19.080  full+3 windows
+IMG_8420   normal   f0= 19.080  full+3 windows
+IMG_8421   normal   f0= 19.080  full+3 windows
+IMG_8422   normal   f0= 19.080  full+3 windows
+IMG_8423   normal   f0= 19.080  full+3 windows
+IMG_8424   normal   f0= 19.080  full+3 windows
+IMG_8425   normal   f0= 19.080  full+3 windows
+IMG_8426   normal   f0= 18.960  full+3 windows
+IMG_8427   normal   f0= 19.080  full+3 windows
+IMG_8428   normal   f0= 19.080  full+3 windows
+IMG_8429   normal   f0= 19.080  full+3 windows
+IMG_8431   normal   f0= 18.960  full+3 windows
+IMG_8432   normal   f0= 18.960  full+3 windows
+IMG_8444   under3g  f0= 19.080  full+3 windows
+IMG_8445   under3g  f0= 18.960  full+3 windows
+IMG_8446   under3g  f0= 18.840  full+3 windows
+IMG_8447   under3g  f0= 18.960  full+3 windows
+IMG_8448   under3g  f0= 18.840  full+3 windows
+IMG_8449   under3g  f0= 18.840  full+3 windows
+IMG_8450   under3g  f0= 18.840  full+3 windows
+IMG_8451   under3g  f0= 18.960  full+3 windows
+IMG_8453   under3g  f0= 18.480  full+3 windows
+IMG_8454   under3g  f0= 18.600  full+3 windows
+IMG_8455   under3g  f0= 18.600  full+3 windows
+IMG_8456   under3g  f0= 18.600  full+3 windows
+IMG_8457   under3g  f0= 18.600  full+3 windows
+IMG_8458   under3g  f0= 18.480  full+3 windows
+IMG_8459   under3g  f0= 18.600  full+3 windows
+IMG_8460   under3g  f0= 18.480  full+3 windows
+
+clip level    : (64, 39)
+window level  : (192, 39) (3 windows of 1024 frames per clip)
+features not measured (avail False): d_base_y.rbp, d_machine_x.rbp, d_machine_y.rbp
+features with zero variance across all clips: d_machine_x.rbp, d_machine_y.rbp, d_base_y.rbp
+wrote C:\Users\more_\Downloads\Arise\ironpulse\h4\features.npz
+wrote C:\Users\more_\Downloads\Arise\ironpulse\h4\features_full.csv

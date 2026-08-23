@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IronPulse Zero</title>
+<link rel="stylesheet" href="/static/css/app.css">
+<link rel="icon" href="data:,">
+</head>
+<body data-min-clips="{{ min_clips }}" data-target-seconds="{{ target_seconds }}">
+<header>
+  <div class="brand">IronPulse Zero</div>
+  <nav>
+    <a href="/" class="{{ 'on' if page=='inspect' else '' }}">ตรวจวินิจฉัย</a>
+    <a href="/calibrate" class="{{ 'on' if page=='calibrate' else '' }}">สอบเทียบเครื่อง</a>
+    <a href="/history" class="{{ 'on' if page=='history' else '' }}">ประวัติและแนวโน้ม</a>
+  </nav>
+  <div class="meta">
+    ตรวจจับความไม่สมดุลของมวลหมุนเท่านั้น<br>
+    <span class="mono">{{ detector }} · config {{ config_hash }} · core {{ core_version }}</span>
+  </div>
+</header>
+<main>
+{% block body %}{% endblock %}
+</main>
+<script src="/static/vendor/miniplot.js"></script>
+<script src="/static/js/common.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

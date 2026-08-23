@@ -1,0 +1,26 @@
+=== mafaulda
+  build 0/1951  windows=17
+  build 600/1951  windows=10217
+  build 1200/1951  windows=20417
+  build 1800/1951  windows=30617
+  dimensionless            train_low_test_high  AUC=0.7980  FAR=0.0165
+  dimensionless            train_high_test_low  AUC=0.4364  FAR=0.5735
+  dimensionless            within_speed_5fold   AUC=0.7147  FAR=0.0212
+  dimensionless_plus_raw   train_low_test_high  AUC=0.7205  FAR=0.0165
+  dimensionless_plus_raw   train_high_test_low  AUC=0.6852  FAR=0.8922
+  dimensionless_plus_raw   within_speed_5fold   AUC=0.7782  FAR=0.0200
+  raw_only                 train_low_test_high  AUC=0.5875  FAR=0.3459
+  raw_only                 train_high_test_low  AUC=0.8013  FAR=0.7377
+  raw_only                 within_speed_5fold   AUC=0.7579  FAR=0.0400
+=== cwru_48k
+  build 0/56  windows=17
+  dimensionless            train_low_test_high  AUC=0.7328  FAR=0.0549
+  dimensionless            train_high_test_low  AUC=0.5392  FAR=0.4595
+  dimensionless            within_speed_5fold   AUC=0.6922  FAR=0.1149
+  dimensionless_plus_raw   train_low_test_high  AUC=0.8236  FAR=0.0769
+  dimensionless_plus_raw   train_high_test_low  AUC=0.5630  FAR=0.4865
+  dimensionless_plus_raw   within_speed_5fold   AUC=0.7371  FAR=0.1216
+  raw_only                 train_low_test_high  AUC=0.8117  FAR=0.1978
+  raw_only                 train_high_test_low  AUC=0.6758  FAR=0.0000
+  raw_only                 within_speed_5fold   AUC=0.7392  FAR=0.0135
+wrote C:\Users\more_\Downloads\Arise\research\results/tables\e4b_raw_transfer.csv 18 rows

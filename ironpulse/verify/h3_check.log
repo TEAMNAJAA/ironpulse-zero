@@ -1,0 +1,14 @@
+clip            frames     df_Hz    app_peak    ref_peak    diff_Hz a1/noise     sec
+IMG_8351.MOV      2194    0.1094      3.0629      2.4066   0.656335    29.03    10.4
+IMG_8352.MOV      2219    0.1082      3.6773      3.6773   0.000000    24.64    11.1
+IMG_8353.MOV      2226    0.1078      3.3423      3.3423   0.000000    23.67    13.8
+IMG_8354.MOV      2219    0.1082      3.0284      3.0284   0.000000    27.18    14.3
+IMG_8356.MOV      2219    0.1082      2.0550      3.1365   1.081568    40.10    14.2
+IMG_8357.MOV      2227    0.1078      3.2330      2.9097   0.323305    23.22    14.5
+IMG_8358.MOV      2231    0.1076      2.9045      2.9045   0.000000    30.47    15.1
+IMG_8359.MOV      2248    0.1068      3.6299      3.6299   0.000000    23.12    16.4
+
+tolerance = 0.050 Hz
+y axis (the axis 03_vibro.py uses): 5/8 clips pass, worst diff 1.081568 Hz
+x axis                            : 8/8 clips pass, worst diff 0.000000 Hz
+wrote C:\Users\more_\Downloads\Arise\ironpulse\verify\h3_results.csv

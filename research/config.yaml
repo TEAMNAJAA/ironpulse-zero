@@ -1,0 +1,70 @@
+seed: 42
+
+paths:
+  raw: datasets/raw
+  cache: datasets/cache
+  results: results
+  tables: results/tables
+  figures: results/figures
+
+signal:
+  window_sec: 1.0
+  hop_sec: 0.25
+  detrend: linear
+  window_fn: hann
+
+integration:
+  accel_units_note: "CWRU drive/fan-end channels are accelerometer records; treated as g and scaled to m/s^2 by g0. MAFAULDA accelerometer columns are in g per IMI 601A01/604B31 datasheets."
+  g0: 9.80665
+  highpass_hz: 0.5
+  highpass_order: 4
+  highpass_order_floor: 0.1
+  highpass_note: "Literal 0.5 Hz leaves a 1/f^2-amplified sub-Hz artifact that exceeds the true 1x displacement by ~10x (measured: 517 um artifact vs 50 um true signal). Effective cutoff is max(0.5 Hz, 0.1*f0), which coincides with the lower edge of the order-analysis band (order 0.1) and recovers the reference amplitude to 50.002 um against a 50.000 um ground truth."
+
+optics:
+  pixels_per_cm: 29.0
+  distance_cm: 30.0
+  sensor_resolution: "1280x720"
+  provenance: "1280 px across a horizontal field of view of 2*30cm*tan(FOVh/2). For FOVh ~ 73.7 deg the field width is 44.8 cm, giving 1280/44.8 = 28.6 ~ 29 px/cm at 30 cm standoff on a 720p stream. Quoted in the task specification and adopted verbatim."
+  pixels_per_meter: 2900.0
+
+camera:
+  decimation_modes: [ideal, naive, boxcar]
+  exposure_sec: [0.0041666667, 0.002, 0.001]
+  default_exposure_sec: 0.0041666667
+  target_fs_hz: [4000, 2000, 1000, 480, 240, 120, 60]
+  primary_fs_hz: 240
+  quantization_px: [0.005, 0.01, 0.05, 0.1]
+  shake_band_hz: [8.0, 12.0]
+
+features:
+  orders: [0.5, 1.0, 2.0, 3.0]
+  peak_search_halfwidth_order: 0.08
+  max_order: 40.0
+  order_grid_step: 0.01
+  bands:
+    E_sub: [0.10, 0.80]
+    E_1x: [0.80, 1.20]
+    E_mid: [1.20, 5.00]
+    E_hi: [5.00, 40.00]
+  blade_count: null
+
+noise:
+  snr_db: [30, 20, 10, 5, 0]
+  types: [white, shake]
+
+detectors:
+  pca_variance: 0.95
+  threshold_percentile: 99
+  isolation_forest:
+    n_estimators: 300
+    max_samples: auto
+  one_class_svm:
+    nu: 0.05
+    gamma: scale
+  pca_reconstruction:
+    variance: 0.95
+
+evaluate:
+  n_folds: 5
+  group_by: file_id

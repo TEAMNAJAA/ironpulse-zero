@@ -1,0 +1,12 @@
+clip    pooled AUC 0.9885 (95% CI 0.9667 - 1.0000)  fold AUC 0.9415 +- 0.1028
+window  pooled AUC 0.9938 (95% CI 0.9792 - 1.0000)  fold AUC 0.9948 +- 0.0093
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\A_confusion_matrix.png
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\B_score_distribution.png
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\C_roc_curve.png
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\D_detection_by_severity.png
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\E_order_spectra.png
+figure -> C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures\F_model_comparison.png
+
+confusion matrix: [[39, 1], [4, 20]]
+wrote figures to C:\Users\more_\Downloads\Arise\ironpulse\h4\results\figures
+wrote tables to C:\Users\more_\Downloads\Arise\ironpulse\h4\results\tables

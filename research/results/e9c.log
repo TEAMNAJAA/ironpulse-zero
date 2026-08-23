@@ -1,0 +1,22 @@
+=== mafaulda
+  1951 signals
+  -- band decomposition (sub lower edge x mid/hi boundary)
+     sub_lo=0.10 mid/hi=3.50  AUC=0.7087 +/- 0.0550  E_hi empty in 52.3% of windows
+     sub_lo=0.10 mid/hi=5.00  AUC=0.7147 +/- 0.0593  E_hi empty in 74.8% of windows
+     sub_lo=0.20 mid/hi=3.50  AUC=0.6966 +/- 0.0688  E_hi empty in 52.3% of windows
+     sub_lo=0.20 mid/hi=5.00  AUC=0.6966 +/- 0.0685  E_hi empty in 74.8% of windows
+  -- order-group ablation split by whether 3x survives Nyquist
+     all_speeds                 n= 33167  all=0.7147  drop_orders=0.7535  delta=+0.0388
+     f0_under_40Hz_3x_intact    n= 19975  all=0.7758  drop_orders=0.7767  delta=+0.0009
+     f0_over_40Hz_3x_aliased    n= 13192  all=0.7891  drop_orders=0.7853  delta=-0.0038
+=== cwru_48k
+  56 signals
+  -- band decomposition (sub lower edge x mid/hi boundary)
+     sub_lo=0.10 mid/hi=3.50  AUC=0.6790 +/- 0.1820  E_hi empty in 0.0% of windows
+     sub_lo=0.10 mid/hi=5.00  AUC=0.6922 +/- 0.2168  E_hi empty in 100.0% of windows
+     sub_lo=0.20 mid/hi=3.50  AUC=0.6637 +/- 0.1928  E_hi empty in 0.0% of windows
+     sub_lo=0.20 mid/hi=5.00  AUC=0.6851 +/- 0.2152  E_hi empty in 100.0% of windows
+  -- order-group ablation split by whether 3x survives Nyquist
+     all_speeds                 n=  1737  all=0.6922  drop_orders=0.7111  delta=+0.0189
+     f0_under_40Hz_3x_intact    n=  1737  all=0.6922  drop_orders=0.7111  delta=+0.0189
+wrote C:\Users\more_\Downloads\Arise\research\results/tables\e9c_bands_and_orders.csv 18 rows

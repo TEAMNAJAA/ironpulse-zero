@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IronPulse Zero — ตรวจความไม่สมดุลของมวลหมุนจากวิดีโอมือถือ</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#14181d;--muted:#5a6572;--line:#d9dee5;
+--ok:#0f7b4f;--bad:#b02a12;--warn-bg:#fff5d6;--accent:#0b5fa5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"Segoe UI","Leelawadee UI",system-ui,sans-serif;line-height:1.6}
+header{background:#0e1b2a;color:#fff;padding:38px 20px}
+header .in{max-width:1080px;margin:0 auto}
+header h1{margin:0 0 6px;font-size:30px}
+header p{margin:4px 0;color:#b9c6d4}
+main{max-width:1080px;margin:0 auto;padding:22px 20px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;
+padding:20px;margin-bottom:20px}
+h2{font-size:21px;margin:0 0 14px}
+h3{font-size:16px;color:var(--muted);margin:20px 0 8px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.kpi div{background:#fbfcfd;border:1px solid var(--line);border-radius:9px;padding:14px}
+.kpi .k{font-size:12px;color:var(--muted);font-weight:700}
+.kpi .v{font-size:27px;font-weight:800}
+.kpi .u{font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:12px}
+td.bad{color:var(--bad);font-weight:700}td.ok{color:var(--ok);font-weight:700}
+.warn{background:var(--warn-bg);border:1px solid #e2c56a;border-left:6px solid #d9a400;
+color:#4a3600;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:14px}
+.stop{background:#fdeae5;border:1px solid #e8a08c;border-left:6px solid var(--bad);
+color:#5c1a0a;border-radius:8px;padding:12px 14px;margin:10px 0}
+figure{margin:0 0 26px}
+figure img{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff}
+figcaption{font-size:13px;color:var(--muted);margin-top:7px}
+code,pre{font-family:Consolas,monospace;font-size:13px}
+pre{background:#0e1b2a;color:#e6edf3;padding:14px;border-radius:9px;overflow-x:auto}
+a{color:var(--accent)}
+.muted{color:var(--muted);font-size:13px}
+.scroll{overflow-x:auto}
+</style>
+</head>
+<body>
+<header><div class="in">
+<h1>IronPulse Zero</h1>
+<p>ตรวจจับความไม่สมดุลของมวลหมุนจากวิดีโอกล้องมือถือ โดยไม่ต้องแตะเครื่องจักร</p>
+<p>กล้อง iPhone 240 fps &middot; optical flow ระดับซับพิกเซล &middot; โมเดลเรียนจากเครื่องปกติเท่านั้น</p>
+</div></header>
+<main>
+<div class="stop">
+<b>ขอบเขตของระบบ</b> ตรวจได้เฉพาะ <b>ความไม่สมดุลของมวลหมุน</b> อย่างเดียวเท่านั้น
+ชุดข้อมูลไม่มีฐานหลวม การอุดตัน หรือการเสียดสี จึงไม่ประเมินและไม่รายงานชนิดเหล่านั้นในทุกกรณี
+</div>
+<div class="warn">
+หน้านี้แสดง <b>ผลที่บันทึกไว้จากการรันจริง</b> ทุกตัวเลขและทุกรูปมาจากคลิปวิดีโอจริง 64 คลิป
+ไม่มีข้อมูลสมมติ ไม่มีการปัดตัวเลขให้สวย
+<b>หน้านี้ไม่ใช่ตัวโปรแกรม</b> เพราะโปรแกรมจริงเป็น Python ที่ต้องถอดรหัสวิดีโอ จึงรันบน GitHub Pages ไม่ได้
+วิธีรันตัวจริงอยู่ท้ายหน้า
+</div>
+<div class="card">
+<h2>ผลการวัด</h2>
+<div class="kpi">
+<div><div class="k">ROC-AUC ระดับคลิป</div><div class="v">0.9885</div>
+<div class="u">95% CI 0.9667 &ndash; 1.0000 &middot; bootstrap 2000 รอบ</div></div>
+<div><div class="k">อัตราแจ้งเตือนผิดพลาด</div><div class="v">0.96 %</div>
+<div class="u">คิดจากคลิปปกติเท่านั้น &asymp; 1.3 ครั้งต่อสัปดาห์ ถ้าตรวจ 20 เครื่องต่อวัน</div></div>
+<div><div class="k">ความละเอียดที่วัดได้</div><div class="v">19.5</div>
+<div class="u">ไมโครเมตร &middot; สอบเทียบด้วยไม้บรรทัดในเฟรม</div></div>
+<div><div class="k">เวลาต่อคลิป</div><div class="v">7.7</div>
+<div class="u">วินาที ต่อ 2000 เฟรม &middot; เป้าหมาย 12 วินาที</div></div>
+</div>
+<div class="warn"><b>ห้ามอ่านเป็น accuracy</b> ชุดทดสอบมีปกติ 40 ผิดปกติ 24 ซึ่งเกือบสมดุล
+แต่โรงงานจริงเครื่องปกติเกือบตลอดเวลา ค่า accuracy จะสูงเกินจริงมาก
+จึงรายงานอัตราตรวจพบกับอัตราแจ้งเตือนผิดพลาดแยกกันเสมอ</div>
+</div>
+<div class="card"><h2>อัตราตรวจพบแยกตามระดับความรุนแรง</h2><div class="scroll"><table>
+<tr><th>กลุ่ม</th><th>จำนวนคลิป</th><th>อัตราตรวจพบ</th><th>แอมพลิจูดที่ 1&times;</th><th>ความเร็วรอบ</th></tr><tr><td>normal</td><td>40</td><td>0.0096 &plusmn; 0.0246</td><td>16.48 &micro;m</td><td>19.026 Hz</td></tr><tr><td>under 3 g</td><td>16</td><td>0.6094 &plusmn; 0.3733</td><td>67.89 &micro;m</td><td>18.735 Hz</td></tr><tr><td>3 g</td><td>8</td><td>0.75 &plusmn; 0.4443</td><td>966.93 &micro;m</td><td>18.105 Hz</td></tr></table></div><div class="warn"><b>ทำไมกลุ่มต่ำกว่า 3 กรัมถึงตรวจพบได้น้อยกว่า</b>
+คลิปที่พลาดมีการสั่นที่ 21&ndash;27 &micro;m ซึ่งอยู่ในพิสัยเดียวกับเครื่องปกติ (4&ndash;41 &micro;m)
+และสูงกว่าขีดจำกัดของกล้องเพียง 1.1&ndash;1.4 เท่า
+ที่ 389 &micro;m ต่อพิกเซล การสั่น 25 &micro;m คือการขยับเพียง <b>0.064 พิกเซล</b>
+นี่คือขีดจำกัดทางฟิสิกส์ของการจัดเฟรมชุดนี้ ไม่ใช่ข้อบกพร่องของโมเดล แก้ได้ด้วยการซูมเข้า</div></div><div class="card"><h2>ผลแยกตามรอบการถ่ายที่กันไว้ทดสอบ</h2>
+<p class="muted">แบ่งข้อมูลตามรอบการถ่าย ไม่ใช่ตามคลิป เพื่อไม่ให้โมเดลจำการตั้งกล้องแทนที่จะจำสภาวะเครื่อง</p>
+<div class="scroll"><table>
+<tr><th>รอบที่กันไว้</th><th>คลิปปกติที่เหลือไว้ฝึก</th><th>AUC</th><th>แจ้งเตือนผิด</th>
+<th>ตรวจพบ 3 ก.</th><th>ตรวจพบ &lt;3 ก.</th></tr><tr><td>S1</td><td>14</td><td class="bad">0.7692</td><td>0.0385</td><td class="bad">0.000</td><td class="bad">0.000</td></tr><tr><td>S2</td><td>35</td><td>1.0000</td><td>0.0000</td><td>1.000</td><td>0.887</td></tr><tr><td>S3</td><td>36</td><td>1.0000</td><td>0.0000</td><td>1.000</td><td>0.800</td></tr><tr><td>S4</td><td>35</td><td>0.9967</td><td>0.0000</td><td>1.000</td><td>0.750</td></tr></table></div><div class="warn"><b>รอบ S1 ตรวจไม่พบอะไรเลย และเราไม่ซ่อนข้อนี้</b>
+คลิปปกติ 26 จาก 40 คลิปกระจุกอยู่ในรอบถ่ายเดียว พอกันรอบนั้นไว้ทดสอบก็เหลือคลิปฝึกแค่ 14 คลิป
+ซึ่งต่ำกว่าขั้นต่ำ 20 คลิปที่ระบบกำหนดไว้เอง เกณฑ์จึงสูงเกินไปจนไม่มีอะไรผ่าน
+<b>ตัวเลขพาดหัวคือค่าเฉลี่ยจากทั้ง 4 รอบ</b> ไม่ใช่เฉพาะรอบที่ผลดี
+ปัญหาอยู่ที่การเก็บข้อมูล ไม่ใช่ที่โมเดล</div></div><div class="card"><h2>โมเดลที่ถูกเลือก</h2>
+<p class="muted">วงในของ nested CV เลือกจากคลิปปกติล้วน ไม่เคยเห็นคลิปผิดปกติ</p>
+<div class="scroll"><table><tr><th>โมเดล</th><th>ค่าเกณฑ์วงใน (ต่ำ = ดี)</th>
+<th>ถูกเลือกกี่ครั้งจาก 20</th></tr><tr><td><b>isolation_forest</b></td><td><b>0.59313 &plusmn; 0.07385</b></td><td><b>20/20</b></td></tr><tr><td>mahalanobis</td><td>1.32879 &plusmn; 0.28948</td><td>0/20</td></tr><tr><td>pca_recon</td><td>3.77469 &plusmn; 0.33298</td><td>0/20</td></tr><tr><td>ocsvm</td><td>166.00971 &plusmn; 29.40164</td><td>0/20</td></tr></table></div></div><div class="card"><h2>รูปทั้งหมด</h2><figure><h3>A · Confusion matrix ระดับคลิป</h3><img src="figures/A_confusion_matrix.png" alt="A · Confusion matrix ระดับคลิป" loading="lazy"><figcaption>ตัวเลขในช่องคือจำนวนคลิป เปอร์เซ็นต์คิดตามแถว มี N และเกณฑ์กำกับใต้รูป</figcaption></figure><figure><h3>B · การกระจายของคะแนน</h3><img src="figures/B_score_distribution.png" alt="B · การกระจายของคะแนน" loading="lazy"><figcaption>รูปที่อธิบายวิธีการได้ดีที่สุด เห็นทั้งการแยกกลุ่มและตำแหน่งเกณฑ์ในภาพเดียว เกณฑ์ตั้งจากคลิปปกติในชุดฝึกเท่านั้น</figcaption></figure><figure><h3>C · ROC curve</h3><img src="figures/C_roc_curve.png" alt="C · ROC curve" loading="lazy"><figcaption>ช่วงความเชื่อมั่นจาก bootstrap 2000 รอบที่ระดับคลิป</figcaption></figure><figure><h3>D · อัตราตรวจพบแยกตามระดับความรุนแรง</h3><img src="figures/D_detection_by_severity.png" alt="D · อัตราตรวจพบแยกตามระดับความรุนแรง" loading="lazy"><figcaption>แท่งคือค่าเฉลี่ยจาก 20 fold-run เส้นคือส่วนเบี่ยงเบนมาตรฐาน 1 sd</figcaption></figure><figure><h3>E · สเปกตรัมแกน order</h3><img src="figures/E_order_spectra.png" alt="E · สเปกตรัมแกน order" loading="lazy"><figcaption>เส้นหนาคือค่ากลางของกลุ่ม แถบคือเปอร์เซ็นไทล์ที่ 10 ถึง 90 กลุ่มถ่วง 3 กรัมมีพีคที่ 1x สูงกว่ากลุ่มปกติชัดเจน พร้อมฮาร์มอนิกถึง 5x</figcaption></figure><figure><h3>F · เปรียบเทียบโมเดลทั้งสี่</h3><img src="figures/F_model_comparison.png" alt="F · เปรียบเทียบโมเดลทั้งสี่" loading="lazy"><figcaption>ค่าจากวงในของ nested CV ยิ่งต่ำยิ่งดี IsolationForest ถูกเลือกทั้ง 20 ครั้ง</figcaption></figure><figure><h3>Pilot รอบ 2 · สเปกตรัมแกน order</h3><img src="figures/pilot2_spectra.png" alt="Pilot รอบ 2 · สเปกตรัมแกน order" loading="lazy"><figcaption>6 คลิปนำร่องก่อนเก็บชุดจริง น้ำเงินคือปกติ ส้มคือไม่สมดุล</figcaption></figure></div><div class="card"><h2>ผลรายคลิปทั้ง 64 คลิป</h2><p class="muted">คะแนนต่อเกณฑ์เกิน 1.000 คือถูกตัดสินว่าผิดปกติ</p><div class="scroll" style="max-height:460px"><table><tr><th>คลิป</th><th>กลุ่ม</th><th>รอบถ่าย</th><th>f0 (Hz)</th><th>A1 (&micro;m)</th><th>คะแนน/เกณฑ์</th><th>ผล</th></tr><tr><td>IMG_8436</td><td>3g</td><td>S5</td><td>18.12</td><td>946.26</td><td>1.07342</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8437</td><td>3g</td><td>S5</td><td>18.12</td><td>1031.59</td><td>1.05839</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8438</td><td>3g</td><td>S5</td><td>18.12</td><td>1062.62</td><td>1.06162</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8439</td><td>3g</td><td>S5</td><td>18.12</td><td>953.32</td><td>1.08104</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8440</td><td>3g</td><td>S5</td><td>18.0</td><td>924.47</td><td>1.06925</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8441</td><td>3g</td><td>S5</td><td>18.12</td><td>984.98</td><td>1.0719</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8442</td><td>3g</td><td>S5</td><td>18.12</td><td>853.6</td><td>1.08067</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8443</td><td>3g</td><td>S5</td><td>18.12</td><td>978.63</td><td>1.06377</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8390</td><td>normal</td><td>S1</td><td>18.96</td><td>14.43</td><td>0.88206</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8391</td><td>normal</td><td>S1</td><td>18.84</td><td>14.29</td><td>0.95288</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8392</td><td>normal</td><td>S1</td><td>18.84</td><td>12.73</td><td>1.00589</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8393</td><td>normal</td><td>S1</td><td>18.96</td><td>14.56</td><td>0.87298</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8394</td><td>normal</td><td>S1</td><td>19.08</td><td>16.28</td><td>0.99815</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8395</td><td>normal</td><td>S1</td><td>19.08</td><td>18.19</td><td>0.93922</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8396</td><td>normal</td><td>S1</td><td>18.96</td><td>17.95</td><td>0.89958</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8397</td><td>normal</td><td>S1</td><td>18.96</td><td>33.19</td><td>0.8004</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8398</td><td>normal</td><td>S1</td><td>18.96</td><td>17.11</td><td>0.92584</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8399</td><td>normal</td><td>S1</td><td>18.96</td><td>18.2</td><td>0.79273</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8400</td><td>normal</td><td>S1</td><td>18.96</td><td>29.75</td><td>0.81739</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8401</td><td>normal</td><td>S1</td><td>18.96</td><td>17.67</td><td>0.82621</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8402</td><td>normal</td><td>S1</td><td>19.08</td><td>6.19</td><td>0.80002</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8403</td><td>normal</td><td>S1</td><td>18.96</td><td>36.74</td><td>0.82681</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8404</td><td>normal</td><td>S1</td><td>19.08</td><td>14.64</td><td>0.87809</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8405</td><td>normal</td><td>S1</td><td>19.08</td><td>4.91</td><td>0.70729</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8406</td><td>normal</td><td>S1</td><td>19.08</td><td>9.29</td><td>0.88208</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8407</td><td>normal</td><td>S1</td><td>19.08</td><td>40.97</td><td>0.85773</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8408</td><td>normal</td><td>S1</td><td>19.08</td><td>9.89</td><td>0.83027</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8409</td><td>normal</td><td>S1</td><td>18.96</td><td>23.59</td><td>0.88163</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8410</td><td>normal</td><td>S1</td><td>19.08</td><td>5.74</td><td>0.7611</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8411</td><td>normal</td><td>S1</td><td>18.96</td><td>6.26</td><td>0.83219</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8412</td><td>normal</td><td>S1</td><td>19.08</td><td>7.32</td><td>0.88449</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8413</td><td>normal</td><td>S1</td><td>19.08</td><td>17.98</td><td>0.77074</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8414</td><td>normal</td><td>S1</td><td>19.08</td><td>14.98</td><td>0.98193</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8415</td><td>normal</td><td>S1</td><td>19.08</td><td>13.92</td><td>0.81756</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8418</td><td>normal</td><td>S3</td><td>19.08</td><td>19.71</td><td>0.81561</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8419</td><td>normal</td><td>S4</td><td>19.08</td><td>18.93</td><td>0.66873</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8420</td><td>normal</td><td>S4</td><td>19.08</td><td>15.65</td><td>0.70008</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8421</td><td>normal</td><td>S4</td><td>19.08</td><td>4.32</td><td>0.95169</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8422</td><td>normal</td><td>S4</td><td>19.08</td><td>15.36</td><td>0.73261</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8423</td><td>normal</td><td>S4</td><td>19.08</td><td>17.34</td><td>0.67601</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8424</td><td>normal</td><td>S3</td><td>19.08</td><td>16.04</td><td>0.77819</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8425</td><td>normal</td><td>S3</td><td>19.08</td><td>16.95</td><td>0.86654</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8426</td><td>normal</td><td>S3</td><td>18.96</td><td>15.03</td><td>0.73348</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8427</td><td>normal</td><td>S2</td><td>19.08</td><td>15.57</td><td>0.70089</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8428</td><td>normal</td><td>S2</td><td>19.08</td><td>18.06</td><td>0.70246</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8429</td><td>normal</td><td>S2</td><td>19.08</td><td>16.66</td><td>0.71483</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8431</td><td>normal</td><td>S2</td><td>18.96</td><td>16.59</td><td>0.79619</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8432</td><td>normal</td><td>S2</td><td>18.96</td><td>16.35</td><td>0.71662</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8444</td><td>under3g</td><td>S6</td><td>19.08</td><td>61.96</td><td>1.13713</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8445</td><td>under3g</td><td>S6</td><td>18.96</td><td>21.34</td><td>1.00159</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8446</td><td>under3g</td><td>S6</td><td>18.84</td><td>23.87</td><td>1.02649</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8447</td><td>under3g</td><td>S6</td><td>18.96</td><td>22.23</td><td>0.9847</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8448</td><td>under3g</td><td>S6</td><td>18.84</td><td>25.65</td><td>0.97396</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8449</td><td>under3g</td><td>S6</td><td>18.84</td><td>25.17</td><td>0.96456</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8450</td><td>under3g</td><td>S6</td><td>18.84</td><td>27.33</td><td>0.99761</td><td class='ok'>ปกติ</td></tr><tr><td>IMG_8451</td><td>under3g</td><td>S6</td><td>18.96</td><td>21.1</td><td>1.05996</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8453</td><td>under3g</td><td>S6</td><td>18.48</td><td>109.24</td><td>1.07454</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8454</td><td>under3g</td><td>S6</td><td>18.6</td><td>106.54</td><td>1.07362</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8455</td><td>under3g</td><td>S6</td><td>18.6</td><td>76.73</td><td>1.0654</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8456</td><td>under3g</td><td>S6</td><td>18.6</td><td>82.09</td><td>1.05428</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8457</td><td>under3g</td><td>S6</td><td>18.6</td><td>84.53</td><td>1.06194</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8458</td><td>under3g</td><td>S6</td><td>18.48</td><td>126.48</td><td>1.07274</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8459</td><td>under3g</td><td>S6</td><td>18.6</td><td>136.36</td><td>1.07735</td><td class='bad'>ผิดปกติ</td></tr><tr><td>IMG_8460</td><td>under3g</td><td>S6</td><td>18.48</td><td>135.63</td><td>1.08495</td><td class='bad'>ผิดปกติ</td></tr></table></div></div><div class="card">
+<h2>วิธีรันโปรแกรมตัวจริง</h2>
+<p>เว็บแอปเป็น Python FastAPI ที่ทำงานบนเครื่องของผู้ใช้ ไม่ต้องต่ออินเทอร์เน็ตขณะใช้งาน</p>
+<pre>git clone https://github.com/TEAMNAJAA/ironpulse-zero.git
+cd ironpulse-zero/ironpulse
+pip install fastapi uvicorn python-multipart numpy scipy scikit-learn opencv-python pyyaml imageio-ffmpeg matplotlib
+python web/seed_demo.py
+python run.py</pre>
+<p class="muted">เปิดเบราว์เซอร์ให้อัตโนมัติที่ <code>http://127.0.0.1:8765/</code>
+คลิปวิดีโอไม่ได้อยู่ใน repo เพราะไฟล์ละราว 100 MB
+แต่ <code>ironpulse/h4/tracks.npz</code> และ <code>features.npz</code> อยู่ครบ
+จึงรัน <code>run_nested_cv.py</code> กับ <code>evaluate.py</code> ซ้ำเพื่อสร้างผลและรูปทั้งหมดใหม่ได้โดยไม่ต้องมีวิดีโอ</p>
+<h3>เอกสาร</h3>
+<ul>
+<li><a href="https://github.com/TEAMNAJAA/ironpulse-zero/blob/main/ironpulse/h4/H4_REPORT.md">H4_REPORT.md</a> วิธีเลือกโมเดลและการประเมินผลฉบับเต็ม พร้อมทุกข้อที่ทำไม่ได้ตามสเปกและเหตุผล</li>
+<li><a href="https://github.com/TEAMNAJAA/ironpulse-zero/blob/main/ironpulse/h4/POSTER_NUMBERS.md">POSTER_NUMBERS.md</a> ประโยคที่ยกไปวางบนโปสเตอร์ได้ พร้อมรายการตัวเลขที่ห้ามใช้</li>
+<li><a href="https://github.com/TEAMNAJAA/ironpulse-zero/blob/main/ironpulse/web/H5_REPORT.md">H5_REPORT.md</a> รายงานเว็บแอปและผลเกณฑ์ตรวจรับ 10 ข้อ</li>
+<li><a href="https://github.com/TEAMNAJAA/ironpulse-zero/blob/main/STATE.md">STATE.md</a> สถานะโปรเจกต์ทั้งหมด บั๊กที่แก้แล้ว และข้อที่ยังค้างการตัดสินใจ</li>
+</ul>
+</div>
+<div class="card">
+<h2>ความซื่อตรงของตัวเลข</h2>
+<ul>
+<li>โมเดลเรียนจากคลิปเครื่องปกติเท่านั้น ไม่เคยเห็นคลิปผิดปกติตอนฝึก</li>
+<li>เกณฑ์ตัดสินตั้งจากคะแนนของคลิปปกติในชุดฝึกเท่านั้น และไม่ปรับหลังเห็นผลของคลิปผิดปกติ</li>
+<li>แบ่งข้อมูลตามรอบการถ่าย ไม่มีคลิปจากรอบเดียวกันอยู่ทั้งชุดฝึกและชุดทดสอบ</li>
+<li>ไม่มีการทำซ้ำหรือสังเคราะห์คลิปเพื่อเพิ่มจำนวนตัวอย่าง</li>
+<li>ตัวเลขจากงานวิจัยบนชุดข้อมูลสาธารณะ <b>ไม่ถูกนำมาปนกับผลของวิดีโอ</b> เพราะไม่ได้ผ่านกล้อง</li>
+<li>ชนิดความผิดปกติอื่นนอกจากความไม่สมดุลไม่ถูกรายงาน เพราะไม่มีข้อมูลรองรับ</li>
+</ul>
+<p class="muted">สร้างจาก <code>ironpulse/web/build_pages.py</code> ซึ่งอ่านตัวเลขจากไฟล์ผลลัพธ์โดยตรง
+ไม่มีตัวเลขที่พิมพ์ด้วยมือในหน้านี้</p>
+</div>
+</main></body></html>

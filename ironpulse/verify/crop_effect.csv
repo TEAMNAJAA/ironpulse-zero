@@ -1,0 +1,7 @@
+clip,axis,ref_peak_hz,app_crop_hz,app_nocrop_hz,crop_matches,nocrop_matches
+IMG_8351.MOV,y,2.4066,3.0629,3.8286,False,False
+IMG_8351.MOV,x,2.9535,2.9535,2.9535,True,True
+IMG_8356.MOV,y,3.1365,2.055,2.055,False,False
+IMG_8356.MOV,x,19.0356,19.0356,19.0356,True,True
+IMG_8357.MOV,y,2.9097,3.233,3.233,False,False
+IMG_8357.MOV,x,3.0175,3.0175,3.0175,True,True

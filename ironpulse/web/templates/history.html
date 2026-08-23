@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="card">
+  <div class="row">
+    <div class="col">
+      <label for="machine">เครื่อง</label>
+      <select id="machine"></select>
+    </div>
+    <div class="col" style="flex:0 0 auto">
+      <button id="export" class="ghost">ส่งออก CSV</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>แนวโน้มตามเวลา</h2>
+  <div class="grid2">
+    <div>
+      <canvas id="trendScore" class="plot"></canvas>
+      <div class="muted">คะแนนความผิดปกติ เส้นประคือเกณฑ์ของ baseline</div>
+    </div>
+    <div>
+      <canvas id="trendA1" class="plot"></canvas>
+      <div class="muted" id="a1Note"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>การตรวจย้อนหลัง</h2>
+  <div id="tableWrap"></div>
+</div>
+
+<div id="detail" class="modal hide">
+  <div class="box">
+    <div class="row" style="justify-content:space-between">
+      <h2 id="detailTitle" style="margin:0"></h2>
+      <button id="detailClose" class="quiet small">ปิด</button>
+    </div>
+    <div id="detailVerdict" style="margin-top:12px"></div>
+    <div id="detailWarn" style="margin-top:10px"></div>
+    <div class="stats" id="detailStats" style="margin-top:12px"></div>
+    <div style="margin-top:14px">
+      <canvas id="detailSpec" class="plot"></canvas>
+    </div>
+    <div style="margin-top:10px">
+      <canvas id="detailWave" class="plot"></canvas>
+    </div>
+    <div class="mono muted" id="detailProv" style="margin-top:10px"></div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/history.js"></script>
+{% endblock %}

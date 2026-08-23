@@ -1,0 +1,49 @@
+====================================================================================================
+clip level: 40 normal in 4 sessions, 24 fault
+  seed 42 fold S1  train 14 -> isolation_forest pca=auto feat=primary   thr=0.6020
+  seed 42 fold S2  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5823
+  seed 42 fold S3  train 36 -> isolation_forest pca=auto feat=primary   thr=0.5929
+  seed 42 fold S4  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5959
+  seed 43 fold S1  train 14 -> isolation_forest pca=auto feat=primary   thr=0.6023
+  seed 43 fold S2  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5816
+  seed 43 fold S3  train 36 -> isolation_forest pca=auto feat=primary   thr=0.5897
+  seed 43 fold S4  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5976
+  seed 44 fold S1  train 14 -> isolation_forest pca=auto feat=primary   thr=0.6135
+  seed 44 fold S2  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5850
+  seed 44 fold S3  train 36 -> isolation_forest pca=auto feat=primary   thr=0.5949
+  seed 44 fold S4  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5956
+  seed 45 fold S1  train 14 -> isolation_forest pca=auto feat=primary   thr=0.6060
+  seed 45 fold S2  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5773
+  seed 45 fold S3  train 36 -> isolation_forest pca=auto feat=primary   thr=0.5926
+  seed 45 fold S4  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5893
+  seed 46 fold S1  train 14 -> isolation_forest pca=auto feat=primary   thr=0.6138
+  seed 46 fold S2  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5821
+  seed 46 fold S3  train 36 -> isolation_forest pca=auto feat=primary   thr=0.5879
+  seed 46 fold S4  train 35 -> isolation_forest pca=auto feat=primary   thr=0.5900
+
+====================================================================================================
+window level: 120 normal in 4 sessions, 72 fault
+  seed 42 fold S1  train 42 -> mahalanobis      pca=3    feat=all       thr=2.4834
+  seed 42 fold S2  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5491
+  seed 42 fold S3  train 108 -> isolation_forest pca=auto feat=primary   thr=0.5550
+  seed 42 fold S4  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5601
+  seed 43 fold S1  train 42 -> mahalanobis      pca=3    feat=all       thr=2.4834
+  seed 43 fold S2  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5532
+  seed 43 fold S3  train 108 -> isolation_forest pca=auto feat=primary   thr=0.5545
+  seed 43 fold S4  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5565
+  seed 44 fold S1  train 42 -> mahalanobis      pca=3    feat=all       thr=2.4834
+  seed 44 fold S2  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5558
+  seed 44 fold S3  train 108 -> isolation_forest pca=auto feat=primary   thr=0.5543
+  seed 44 fold S4  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5507
+  seed 45 fold S1  train 42 -> mahalanobis      pca=3    feat=all       thr=2.4834
+  seed 45 fold S2  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5498
+  seed 45 fold S3  train 108 -> isolation_forest pca=auto feat=primary   thr=0.5555
+  seed 45 fold S4  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5534
+  seed 46 fold S1  train 42 -> mahalanobis      pca=3    feat=all       thr=2.4834
+  seed 46 fold S2  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5472
+  seed 46 fold S3  train 108 -> isolation_forest pca=auto feat=primary   thr=0.5530
+  seed 46 fold S4  train 105 -> isolation_forest pca=auto feat=primary   thr=0.5526
+
+wrote C:\Users\more_\Downloads\Arise\ironpulse\h4\results\candidates.csv 1600 rows
+wrote C:\Users\more_\Downloads\Arise\ironpulse\h4\results\raw_scores.csv 2720 rows
+wrote C:\Users\more_\Downloads\Arise\ironpulse\h4\results\selection_log.csv 40 rows

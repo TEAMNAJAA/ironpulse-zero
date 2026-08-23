@@ -1,0 +1,4 @@
+group,severity,n_clips,detection_rate_mean,detection_rate_sd,score_mean,score_sd,a1_px_mean,a1_um_mean,f0_hz_mean
+normal,normal,40,0.0096,0.0246,0.8245,0.0919,0.04235,16.48,19.026
+under 3 g,under3g,16,0.6094,0.3733,1.0444,0.0478,0.17442,67.89,18.735
+3 g,3g,8,0.75,0.4443,1.07,0.0084,2.48424,966.93,18.105

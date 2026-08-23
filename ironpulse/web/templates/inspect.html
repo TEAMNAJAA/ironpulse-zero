@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="card">
+  <div class="row">
+    <div class="col">
+      <label for="machine">เครื่องที่ตรวจ</label>
+      <select id="machine"></select>
+    </div>
+    <div class="col">
+      <label for="fs">อัตราเฟรมจริง fs (Hz)</label>
+      <input id="fs" type="number" step="0.1" value="{{ default_fs }}">
+    </div>
+    <div class="col" style="flex:0 0 auto">
+      <button id="reseed" class="ghost">ตั้งมาร์กเกอร์ใหม่ 30 วินาที</button>
+    </div>
+  </div>
+  <div id="machineNote" class="muted" style="margin-top:8px"></div>
+</div>
+
+<div class="card">
+  <h2>เลือกคลิปที่จะตรวจ</h2>
+  <div id="drop" class="drop">ลากไฟล์วิดีโอมาวางที่นี่ หรือ
+    <button id="pick" class="small ghost">กดเลือกไฟล์</button>
+    <input id="file" type="file" accept="video/*" class="hide">
+  </div>
+  <h3>โหมดสาธิต — ไฟล์ในโฟลเดอร์ data/demo</h3>
+  <div id="demo" class="chips"></div>
+  <div id="demoEmpty" class="muted hide">ยังไม่มีไฟล์ใน data/demo ให้วางไฟล์แล้วรีเฟรชหน้านี้</div>
+</div>
+
+<div id="progress" class="card hide">
+  <div class="row" style="align-items:center">
+    <span class="spinner"></span>
+    <b id="progressText">กำลังวิเคราะห์</b>
+  </div>
+  <div class="bar" style="margin-top:10px"><i id="progressBar" style="width:0%"></i></div>
+</div>
+
+<div id="errors"></div>
+
+<div id="result" class="hide">
+  <div class="card">
+    <div id="verdict" class="verdict ok">
+      <div class="big" id="verdictText" style="font-size:{{ verdict_px }}px">ปกติ</div>
+      <div>
+        <div class="sub" id="verdictSub"></div>
+        <div class="muted" id="verdictMeta"></div>
+      </div>
+      <div style="margin-left:auto">
+        <button id="again" class="quiet">รันซ้ำคลิปเดิม</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="warnings"></div>
+
+  <div class="card">
+    <div class="stats" id="stats"></div>
+    <h3>คะแนนความผิดปกติเทียบเกณฑ์</h3>
+    <div class="bar" id="scoreBar"><i style="width:0%"></i><span class="mark" style="left:50%"></span></div>
+    <div class="muted" id="scoreNote" style="margin-top:6px"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>สเปกตรัมแกน order</h2>
+      <canvas id="spec" class="plot"></canvas>
+      <div class="muted">เส้นทึบคือคลิปนี้ เส้นจางคือค่ากลางของ baseline · เส้นประคือ 1× 2× 3×</div>
+    </div>
+    <div class="card">
+      <h2>การกระจัดตามเวลา</h2>
+      <canvas id="wave" class="plot"></canvas>
+      <div class="muted" id="waveNote"></div>
+    </div>
+  </div>
+</div>
+
+<div id="reseedModal" class="modal hide">
+  <div class="box">
+    <h2>ตั้งมาร์กเกอร์ใหม่</h2>
+    <p class="muted">ใช้ตอนย้ายกล้องหรือย้ายบูธ เลือกคลิปหนึ่งไฟล์แล้วคลิกมาร์กเกอร์ 3 จุดตามลำดับ
+      ขั้นตอนนี้ปรับเฉพาะตำแหน่งมาร์กเกอร์ ไม่ได้สร้าง baseline ใหม่
+      ถ้าย้ายกล้องจนสเกลเปลี่ยน ต้องสอบเทียบ baseline ใหม่ทั้งชุดที่หน้าสอบเทียบเครื่อง</p>
+    <div class="row">
+      <div class="col">
+        <label>คลิปอ้างอิง</label>
+        <select id="reseedFile"></select>
+      </div>
+      <div class="col" style="flex:0 0 auto">
+        <button id="reseedLoad" class="ghost">โหลดเฟรมแรก</button>
+      </div>
+    </div>
+    <div id="reseedPicker" style="margin-top:14px"></div>
+    <div class="row" style="margin-top:14px">
+      <button id="reseedSave" disabled>บันทึกตำแหน่งใหม่</button>
+      <button id="reseedCancel" class="quiet">ปิด</button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/picker.js"></script>
+<script src="/static/js/inspect.js"></script>
+{% endblock %}

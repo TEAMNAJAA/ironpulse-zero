@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="card">
+  <h2>1. เลือกเครื่องเดิม หรือสร้างเครื่องใหม่</h2>
+  <div class="row">
+    <div class="col">
+      <label for="machine">เครื่องที่มีอยู่</label>
+      <select id="machine"></select>
+    </div>
+    <div class="col" style="flex:0 0 auto">
+      <button id="useExisting" class="ghost">ใช้เครื่องนี้</button>
+    </div>
+  </div>
+  <h3>หรือสร้างใหม่</h3>
+  <div class="row">
+    <div class="col"><label for="name">ชื่อเครื่อง</label><input id="name" placeholder="เช่น พัดลมตั้งพื้น A"></div>
+    <div class="col"><label for="blades">จำนวนใบพัด</label><input id="blades" type="number" min="1" placeholder="เช่น 3"></div>
+    <div class="col"><label for="fs">อัตราเฟรมจริง fs (Hz)</label><input id="fs" type="number" step="0.1" value="{{ default_fs }}"></div>
+    <div class="col"><label for="scale">ค่าสอบเทียบสเกล</label><select id="scale"></select></div>
+  </div>
+  <div class="muted" style="margin-top:6px">
+    fs ต้องกรอกเอง ห้ามเชื่อค่าจาก metadata ของไฟล์ เพราะไฟล์สโลว์โมชั่นจากมือถือรายงาน fps ผิดเป็นปกติ
+  </div>
+</div>
+
+<div class="card">
+  <h2>2. อัปโหลดคลิปสภาวะปกติ</h2>
+  <div id="drop" class="drop">ลากไฟล์วิดีโอหลายไฟล์มาวางที่นี่ หรือ
+    <button id="pick" class="small ghost">กดเลือกไฟล์</button>
+    <input id="file" type="file" accept="video/*" multiple class="hide">
+  </div>
+  <div class="row" style="margin-top:10px">
+    <button id="useDemo" class="quiet small">ใช้ไฟล์ทั้งหมดใน data/demo</button>
+    <button id="clearFiles" class="quiet small">ล้างรายการ</button>
+  </div>
+  <div id="fileNote" class="muted" style="margin-top:10px"></div>
+  <div id="fileList" class="filelist hide" style="margin-top:8px"></div>
+</div>
+
+<div class="card">
+  <h2>3. คลิกมาร์กเกอร์ 3 จุดบนเฟรมแรก</h2>
+  <div class="muted">ลำดับสำคัญ ต้องคลิกตามนี้เท่านั้น</div>
+  <ol class="muted">
+    <li>จุดบนเครื่อง ติดบนตัวเรือนมอเตอร์ ส่วนที่สั่นมากที่สุด</li>
+    <li>จุดบนเสา ติดบนฐานหรือเสาของเครื่อง</li>
+    <li>จุดอ้างอิง ติดบนผนังหรือของที่ไม่สั่น</li>
+  </ol>
+  <div id="picker" style="margin-top:10px"></div>
+</div>
+
+<div class="card">
+  <h2>4. สร้าง baseline</h2>
+  <div id="preflight"></div>
+  <button id="build" disabled>สร้าง baseline</button>
+  <div id="progress" class="hide" style="margin-top:14px">
+    <div class="row" style="align-items:center">
+      <span class="spinner"></span><b id="progressText">กำลังประมวลผล</b>
+    </div>
+    <div class="bar" style="margin-top:10px"><i id="progressBar" style="width:0%"></i></div>
+  </div>
+  <div id="out" style="margin-top:14px"></div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script src="/static/js/picker.js"></script>
+<script src="/static/js/calibrate.js"></script>
+{% endblock %}

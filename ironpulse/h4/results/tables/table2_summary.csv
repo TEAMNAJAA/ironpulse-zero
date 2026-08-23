@@ -1,0 +1,9 @@
+metric,value,ci_low,ci_high,note
+roc_auc_pooled,0.9885,0.9667,1.0,2000 bootstrap resamples at clip level
+roc_auc_fold_mean,0.9415,,,sd 0.1028 over 20 fold-runs
+detection_rate_all,0.6562,,,sd 0.3939
+detection_rate_3g,0.75,,,sd 0.4443
+detection_rate_under3g,0.6094,,,sd 0.3733
+false_alarm_rate,0.0096,,,"normal clips only, sd 0.0246"
+px_per_mm,2.5692,,,"ruler, 389.23 um/px"
+detection_floor_um,19.46,,,flow resolution 0.050 px

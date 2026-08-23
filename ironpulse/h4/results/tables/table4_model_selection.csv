@@ -1,0 +1,5 @@
+model,criterion_mean,criterion_sd,times_selected_clip,times_selected_window
+isolation_forest,0.59313,0.07385,20,15
+mahalanobis,1.32879,0.28948,0,5
+pca_recon,3.77469,0.33298,0,0
+ocsvm,166.00971,29.40164,0,0

@@ -1,0 +1,27 @@
+=== mafaulda 1951 files
+  multi 0/1951
+  multi 600/1951
+  multi 1200/1951
+  multi 1800/1951
+mafaulda: built 8 conditions in 828s
+  fs=   48000  mahalanobis=0.8195  ocsvm=0.8828
+  fs=    4000  mahalanobis=0.8195  ocsvm=0.8830
+  fs=    2000  mahalanobis=0.8191  ocsvm=0.8834
+  fs=    1000  mahalanobis=0.8269  ocsvm=0.8844
+  fs=     480  mahalanobis=0.7735  ocsvm=0.8837
+  fs=     240  mahalanobis=0.7147  ocsvm=0.7854
+  fs=     120  mahalanobis=0.7030  ocsvm=0.7789
+  fs=      60  mahalanobis=0.6528  ocsvm=0.6924
+=== cwru_48k 56 files
+  multi 0/56
+cwru_48k: built 8 conditions in 56s
+  fs=   48000  mahalanobis=0.7497  ocsvm=0.8277
+  fs=    4000  mahalanobis=0.7496  ocsvm=0.8275
+  fs=    2000  mahalanobis=0.7490  ocsvm=0.8268
+  fs=    1000  mahalanobis=0.7481  ocsvm=0.8253
+  fs=     480  mahalanobis=0.7386  ocsvm=0.8171
+  fs=     240  mahalanobis=0.6922  ocsvm=0.7722
+  fs=     120  mahalanobis=0.7236  ocsvm=0.7204
+  fs=      60  mahalanobis=0.6214  ocsvm=0.6078
+wrote C:\Users\more_\Downloads\Arise\research\results/tables\e2d_best_detector_overall.csv 32 rows
+wrote C:\Users\more_\Downloads\Arise\research\results/tables\e2d_best_detector_per_label.csv 192 rows
