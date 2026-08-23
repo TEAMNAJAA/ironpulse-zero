@@ -22,10 +22,17 @@ C:\Users\more_\Downloads\Arise\
     h4/                  H4 + H6 · nested CV, ประเมินผล, รูปและตารางสำหรับโปสเตอร์
     web/                 H5 เว็บแอป FastAPI · 3 หน้า ไม่ต้องต่อเน็ต
     run.py               เปิดเว็บแอปด้วยคำสั่งเดียว
+    requirements.txt     ไลบรารีตรึงเวอร์ชัน ใช้ทั้งเครื่องตัวเองและ Docker
+    docker-entrypoint.sh นำเข้า baseline แล้วเปิด uvicorn ในคอนเทนเนอร์
     data/                คลิปสาธิต ไฟล์อัปโหลด และฐานข้อมูล SQLite
     calibration.json     ค่าสอบเทียบสเกลต่อ setup_id
     config.yaml
     HANDOVER_PARAMS.md   ที่มาของทุกพารามิเตอร์ อ่านคู่กับไฟล์นี้
+  docs/                  หน้า static สำหรับ GitHub Pages สร้างด้วย ironpulse/web/build_pages.py
+  Dockerfile             image สำหรับ Render มี ffmpeg และ opencv-headless
+  render.yaml            blueprint ของ Render
+  DEPLOY_RENDER.md       ขั้นตอน deploy และข้อจำกัดของ free tier
+  เปิดเว็บแอป.bat        ดับเบิลคลิกเพื่อเปิดเว็บแอปบนเครื่องตัวเอง
   STATE.md               ไฟล์นี้
 C:\Users\more_\Downloads\Arise H4\       ชุดข้อมูลจริง 65 คลิป (normal 40 · น้อยกว่า3กรัม 16 · 3กรัม 8 · calibration_ruler 1)
 C:\Users\more_\Downloads\Arise H3 fix\   คลิปนำร่องรอบ 2 จำนวน 6 คลิป (normal_01..03 / unbal_01..03)
@@ -62,6 +69,7 @@ from core import dsp, features, detectors, evaluate
 | **แก้บั๊กจากผล pilot2 + สอบเทียบสเกล** | เสร็จ | บั๊ก G–N ในหัวข้อ 6 · core ไม่ถูกแตะ md5 ตรงเดิมทั้ง 11 ไฟล์ |
 | **H4 เลือกโมเดลบนวิดีโอจริง** | เสร็จ | nested CV บน `Arise H4` 64 คลิป · IsolationForest ถูกเลือก 20/20 fold-run · `h4/H4_REPORT.md` |
 | **H6 ประเมินผล + รูปโปสเตอร์** | เสร็จ | AUC 0.9885 (CI 0.967–1.000) · รูป A–F 300 dpi · ตาราง 1–5 · `h4/POSTER_NUMBERS.md` |
+| **นำขึ้น GitHub + Pages + เตรียม Render** | เสร็จ | repo public · หน้า static ที่ teamnajaa.github.io/ironpulse-zero · `Dockerfile` + `render.yaml` + `baseline_seed.json` · ดู `DEPLOY_RENDER.md` |
 | **H5 เว็บแอป** | เสร็จ | `python run.py` · 3 หน้า · เกณฑ์ตรวจรับผ่าน 10/10 · คะแนนตรงกับ H4 ทุกบิต · `web/H5_REPORT.md` |
 
 ---
@@ -461,6 +469,10 @@ python web\seed_demo.py                                   # ตั้งค่�
 python run.py                                             # เปิดเว็บแอป
 python webcceptance.py                                  # เกณฑ์ตรวจรับ 10 ข้อ (ต้องเปิดเซิร์ฟเวอร์ค้างไว้)
 python h4erify_webapp.py                                # พิสูจน์ว่าเว็บแอปให้คะแนนตรงกับ H4
+
+python webaseline_seed.py                               # ส่งออก baseline เป็นไฟล์ seed สำหรับ Docker
+python webaseline_seed.py import                        # นำเข้า baseline เข้าฐานข้อมูลว่าง
+python webuild_pages.py TEAMNAJAA ironpulse-zero        # สร้างหน้า static ใน docs/
 ```
 
 **สอบเทียบสเกล** (ข้อ 7.7) ทำสองขั้น ขั้นแรกดึงเฟรมออกมาหาพิกัดบนไม้บรรทัด ขั้นสองบันทึกค่า
@@ -486,4 +498,4 @@ python verify\calibrate_scale.py --clip <ruler.MOV> --setup-id <ชื่อ> --
 
 ---
 
-NEXT ACTION: ตัดสิน 3 ข้อที่ค้าง — (1) `rules.z_threshold` = 3.0 ยังไม่เคยยืนยันกับ baseline จริง (7.5) · (2) การยึด f0 กับ baseline ล็อกพลาดหนึ่ง bin เมื่อความเร็วรอบอยู่ขอบหน้าต่าง เลือกทางแก้ ก/ข/ค (7.13) · (3) จะถ่ายเพิ่มไหม ซึ่งคุ้มที่สุด · ถ้าถ่ายเพิ่ม ต้องทำ 5 อย่างพร้อมกัน คือ กระจายคลิปปกติอย่างน้อย 5 รอบ รอบละ ~8 คลิป (7.9) · จดมวลดินน้ำมันรายคลิป (7.11) · ซูมเข้าให้ µm/px ลดลงอย่างน้อยครึ่งหนึ่ง (7.7) · สลับถ่ายปกติ/ผิดปกติในรอบเดียวไม่แตะกล้อง (7.12) · ถ่ายคลิปปกติที่ความเร็วรอบเท่ากลุ่ม fault (7.10) · จากนั้นรัน `h4/extract_tracks.py` → `features_from_tracks.py` → `run_nested_cv.py` → `evaluate.py` แล้ว `web/seed_demo.py` ซ้ำได้เลย ไม่ต้องแก้โค้ด · ระบบพร้อมสาธิตแล้ว เปิดด้วย `python run.py`
+NEXT ACTION: deploy บน Render ตาม `DEPLOY_RENDER.md` แล้วตัดสินว่าจะให้มีคลิปสาธิตบนเน็ตหรือไม่ ซึ่งมี 3 ทางเลือกพร้อมข้อแลกเปลี่ยนอยู่ใน DEPLOY_RENDER ข้อ 5 (บีบอัดคลิปแล้วตัวเลขจะไม่ตรงกับ H4 · เพิ่มโหมดเล่นซ้ำจาก track ที่ข้ามการถอดรหัสวิดีโอ · ใช้ persistent disk ซึ่งเสียเงิน) · ยังค้างอีก 3 ข้อจากก่อนหน้า คือ ยืนยัน `rules.z_threshold` = 3.0 กับ baseline จริง (7.5) · เลือกทางแก้การยึด f0 ที่ล็อกพลาดหนึ่ง bin (7.13) · ถ่ายข้อมูลเพิ่มโดยทำ 5 อย่างพร้อมกันตามข้อ 7.9–7.12 ซึ่งคุ้มที่สุด · ถ้าถ่ายเพิ่มแล้ว รัน `h4/extract_tracks.py` → `features_from_tracks.py` → `run_nested_cv.py` → `evaluate.py` → `web/seed_demo.py` → `web/baseline_seed.py` → `web/build_pages.py` แล้ว push ก็อัปเดตทั้งระบบและหน้าเว็บพร้อมกัน
