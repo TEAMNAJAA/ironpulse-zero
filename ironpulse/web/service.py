@@ -236,11 +236,16 @@ def inspect(cfg, con, machine, clip_path, filename, fs=None, progress=None):
 
 JOBS = {}
 LOCK = threading.Lock()
+MAX_JOBS = 200
 
 
 def new_job(kind, total=1):
     jid = uuid.uuid4().hex[:12]
     with LOCK:
+        if len(JOBS) >= MAX_JOBS:
+            done = [k for k, v in JOBS.items() if v["state"] != "running"]
+            for k in sorted(done, key=lambda k: JOBS[k]["started"])[:len(done) // 2 + 1]:
+                JOBS.pop(k, None)
         JOBS[jid] = dict(id=jid, kind=kind, state="running", frames=0,
                          frames_total=0, step=0, step_total=total, message="",
                          result=None, error=None, started=time.time())

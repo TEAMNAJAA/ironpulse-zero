@@ -24,7 +24,7 @@ def core_version(repo_root):
     for name in CORE_FILES:
         p = os.path.join(repo_root, "core", name)
         if os.path.isfile(p):
-            h.update(io.open(p, "rb").read())
+            h.update(io.open(p, "rb").read().replace(b"\r\n", b"\n"))
     return h.hexdigest()[:12]
 
 

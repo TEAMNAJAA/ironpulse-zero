@@ -35,7 +35,7 @@ CORE_VERSION = bl.core_version(REPO)
 
 app = FastAPI(title="IronPulse Zero")
 app.mount("/static", StaticFiles(directory=os.path.join(HERE, "static")), name="static")
-app.mount("/data", StaticFiles(directory=sv.abspath(cfg, "data_dir")), name="data")
+app.mount("/frames", StaticFiles(directory=FRAME_DIR), name="frames")
 templates = Jinja2Templates(directory=os.path.join(HERE, "templates"))
 
 
@@ -149,7 +149,7 @@ def api_first_frame(path: str = Form(...)):
     out = os.path.join(FRAME_DIR, name)
     if not os.path.isfile(out):
         sv.first_frame_png(p, out)
-    return {"url": "/data/frames/" + name, "width": info["width"],
+    return {"url": "/frames/" + name, "width": info["width"],
             "height": info["height"], "n_frames": info["n_frames"],
             "meta_fps": info["meta_fps"], "path": p}
 
